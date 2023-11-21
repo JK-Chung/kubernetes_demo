@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demo-nginx-server
+  name: demo-nginx-server
+  namespace: demo-application
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-nginx-server
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demo-nginx-server
+    spec:
+      containers:
+      - image: demo-nginx-server:${TAG_VERSION}
+        name: demo-nginx-server
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        ports:
+        - containerPort: 80
+status: {}
